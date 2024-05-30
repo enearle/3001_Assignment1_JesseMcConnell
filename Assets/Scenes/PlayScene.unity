@@ -452,9 +452,25 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 176139612}
+    - target: {fileID: 479277309084939149, guid: 24fe13f212ff35d4da5de9817b95fadb, type: 3}
+      propertyPath: movementSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 479277309084939149, guid: 24fe13f212ff35d4da5de9817b95fadb, type: 3}
+      propertyPath: rotationSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3275328437032952400, guid: 24fe13f212ff35d4da5de9817b95fadb, type: 3}
       propertyPath: m_Name
       value: Starship Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683161222310130697, guid: 24fe13f212ff35d4da5de9817b95fadb, type: 3}
+      propertyPath: m_Pitch
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683161222310130697, guid: 24fe13f212ff35d4da5de9817b95fadb, type: 3}
+      propertyPath: m_Volume
+      value: 0.714
       objectReference: {fileID: 0}
     - target: {fileID: 7001827523004621720, guid: 24fe13f212ff35d4da5de9817b95fadb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -552,6 +568,10 @@ PrefabInstance:
     - target: {fileID: 8171493362612185699, guid: b0f7a8732335dbb429cd4c26c4aa261b, type: 3}
       propertyPath: m_Name
       value: planet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8171493362612185699, guid: b0f7a8732335dbb429cd4c26c4aa261b, type: 3}
+      propertyPath: m_TagString
+      value: Target
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

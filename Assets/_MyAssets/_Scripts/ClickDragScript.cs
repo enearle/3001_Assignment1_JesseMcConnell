@@ -26,7 +26,7 @@ public class ClickDragScript : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Released " + currentlyDraggedObject.gameObject.name);
+            //Debug.Log("Released " + currentlyDraggedObject.gameObject.name);
             isDragging = false;
             currentlyDraggedObject = null;
         }
