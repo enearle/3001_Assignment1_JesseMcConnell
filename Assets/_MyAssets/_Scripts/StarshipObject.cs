@@ -48,7 +48,7 @@ public class StarshipObject : AgentObject
         if (TargetPostition != null)
         {
             //SeekKinematic();
-            SeekForward();
+            SeekForward(rb,TargetPostition, movementSpeed, rotationSpeed);
             AvoidObstacles();
         }
     }
@@ -139,35 +139,30 @@ public class StarshipObject : AgentObject
         return hitResult;
     }
 
-    private void SeekKinematic()
+    public static void SeekKinematic(Rigidbody2D rb, Vector2 target, float speed)
     {
-        Vector2 desiredVelocity = (TargetPostition - transform.position).normalized * (movementSpeed * Time.fixedDeltaTime);
+        Vector2 desiredVelocity = ((Vector3)target - rb.transform.position).normalized * (speed * Time.fixedDeltaTime);
 
         Vector2 steeringForce = desiredVelocity - rb.velocity;
         
         rb.AddForce(steeringForce);
     }
-
-    private void SeekForward()
+    
+    public static void SeekForward(Rigidbody2D rb, Vector2 target, float speed, float rotSpeed)
     {
-        Vector2 directionToTarget = (TargetPostition - transform.position).normalized;
+        Vector2 directionToTarget = ((Vector3)target - rb.transform.position).normalized;
 
         float targetAngle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg + 90f;
 
-        float angleDifference = Mathf.DeltaAngle(targetAngle, transform.eulerAngles.z);
+        float angleDifference = Mathf.DeltaAngle(targetAngle, rb.transform.eulerAngles.z);
 
-        float rotationStep = rotationSpeed* Time.fixedDeltaTime;
+        float rotationStep = rotSpeed* Time.fixedDeltaTime;
 
         float rotationAmount = Mathf.Clamp(angleDifference, -rotationStep, rotationStep);
         
-        transform.Rotate(Vector3.forward, rotationAmount);
+        rb.transform.Rotate(Vector3.forward, rotationAmount);
 
-        if((TargetPostition - transform.position).magnitude <= arriveRadius)
-            rb.velocity = Vector2.zero;
-        else if ((TargetPostition - transform.position).magnitude <= slowDownRadius)
-            rb.velocity = transform.up * (movementSpeed * Time.fixedDeltaTime * 0.5f * velocityWeight);
-        else
-            rb.velocity = transform.up * (movementSpeed * Time.fixedDeltaTime * velocityWeight);
+        rb.velocity = rb.transform.up * (speed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
