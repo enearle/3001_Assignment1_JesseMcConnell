@@ -48,7 +48,13 @@ public class StarshipObject : AgentObject
         if (TargetPostition != null)
         {
             //SeekKinematic();
-            SeekForward(rb,TargetPostition, movementSpeed, rotationSpeed);
+            if((TargetPostition - transform.position).magnitude <= arriveRadius)
+                rb.velocity = Vector2.zero;
+            else if ((TargetPostition - transform.position).magnitude <= slowDownRadius)
+                SeekForward(rb,TargetPostition, movementSpeed * 0.5f, rotationSpeed);
+            else
+                SeekForward(rb,TargetPostition, movementSpeed, rotationSpeed);
+            
             AvoidObstacles();
         }
     }
